@@ -4,7 +4,7 @@ Meu site pessoal desenvolvido para apresentar projetos, habilidades e experiênc
 
 ## 🌐 Acesse
 
-👉 https://github.com/vitorbytedev/vitorbytedev.github.io/
+👉 https://vitorbytedev.github.io/
 
 ## 🛠️ Tecnologias
 

@@ -1,0 +1,349 @@
+/* ========================================
+   VARIÁVEIS & RESET
+======================================== */
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap');
+
+:root {
+  --bg:         #0a0a0a;
+  --bg-card:    #111111;
+  --bg-hover:   #161616;
+  --cyan:       #00e5cc;
+  --cyan-dim:   #00e5cc22;
+  --cyan-mid:   #00e5cc66;
+  --text:       #e8e8e8;
+  --text-muted: #666666;
+  --border:     #1f1f1f;
+  --font-mono:  'Space Mono', monospace;
+  --font-body:  'DM Sans', sans-serif;
+  --radius:     8px;
+  --transition: 0.2s ease;
+}
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+/* ========================================
+   TIPOGRAFIA
+======================================== */
+h1, h2, h3 {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2rem, 5vw, 3.5rem); }
+h2 { font-size: clamp(1.4rem, 3vw, 2rem); margin-bottom: 2.5rem; }
+h3 { font-size: 1rem; }
+
+a {
+  color: var(--cyan);
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+a:hover { opacity: 0.75; }
+
+.destaque {
+  color: var(--cyan);
+}
+
+/* ========================================
+   LAYOUT
+======================================== */
+section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+
+/* Linha decorativa antes dos títulos h2 */
+h2::before {
+  content: '// ';
+  color: var(--cyan);
+  font-family: var(--font-mono);
+}
+
+/* ========================================
+   NAVEGAÇÃO
+======================================== */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 2rem;
+  background: rgba(10, 10, 10, 0.85);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  color: var(--cyan);
+  letter-spacing: 0.05em;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+nav ul a {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  letter-spacing: 0.03em;
+  transition: color var(--transition);
+}
+
+nav ul a:hover {
+  color: var(--cyan);
+  opacity: 1;
+}
+
+/* ========================================
+   HERO
+======================================== */
+#hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-top: 5rem;
+  position: relative;
+}
+
+#hero::before {
+  content: '';
+  position: absolute;
+  top: 20%;
+  left: -10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, #00e5cc0d 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+
+.hero-texto {
+  flex: 1;
+}
+
+.hero-texto p {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--text-muted);
+  margin: 1rem 0 2.5rem;
+  max-width: 520px;
+}
+
+.hero-foto {
+  flex-shrink: 0;
+  width: 220px;
+  height: 220px;
+}
+
+.hero-foto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid var(--cyan-mid);
+  filter: grayscale(20%);
+  transition: filter 0.3s ease, border-color 0.3s ease;
+}
+
+.hero-foto img:hover {
+  filter: grayscale(0%);
+  border-color: var(--cyan);
+}
+
+/* Responsivo — foto vai pra cima no mobile */
+@media (max-width: 600px) {
+  .hero-content {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .hero-foto {
+    width: 160px;
+    height: 160px;
+  }
+
+  .hero-texto p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* ========================================
+   BOTÃO
+======================================== */
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.75rem;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  border-radius: var(--radius);
+  transition: background var(--transition), color var(--transition);
+  letter-spacing: 0.05em;
+}
+
+.btn:hover {
+  background: var(--cyan);
+  color: var(--bg);
+  opacity: 1;
+}
+
+/* ========================================
+   SOBRE
+======================================== */
+#sobre p {
+  color: var(--text-muted);
+  max-width: 700px;
+  font-size: 1.05rem;
+}
+
+/* ========================================
+   PROJETOS
+======================================== */
+.grid-projetos {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+
+.card-projeto {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: border-color var(--transition), background var(--transition), transform var(--transition);
+  cursor: pointer;
+}
+
+.card-projeto:hover {
+  border-color: var(--cyan-mid);
+  background: var(--bg-hover);
+  transform: translateY(-3px);
+}
+
+.card-projeto .tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--cyan);
+  background: var(--cyan-dim);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+.card-projeto h3 {
+  color: var(--text);
+  margin-bottom: 0.5rem;
+}
+
+.card-projeto p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.card-projeto .links {
+  display: flex;
+  gap: 1rem;
+  font-size: 0.8rem;
+  font-family: var(--font-mono);
+}
+
+/* ========================================
+   SKILLS
+======================================== */
+.lista-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.skill-tag {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  color: var(--text-muted);
+  transition: border-color var(--transition), color var(--transition);
+}
+
+.skill-tag:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+}
+
+/* ========================================
+   CONTATO
+======================================== */
+#contato p {
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.links-contato {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.links-contato a {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  padding: 0.6rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text-muted);
+  transition: all var(--transition);
+}
+
+.links-contato a:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  opacity: 1;
+}
+
+/* ========================================
+   RESPONSIVO
+======================================== */
+@media (max-width: 600px) {
+  nav ul { gap: 1.2rem; }
+  section { padding: 4rem 1.25rem; }
+}
